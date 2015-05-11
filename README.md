@@ -7,7 +7,7 @@ A very simple way to get started with [web speech API](http://caniuse.com/#feat=
 
 Basically, you can get started with the example index page or init the library like this:
 
-```
+```html
 <!-- include the js file -->
 <script src="path/to/js/webspeech.js"></script>
 <script>
