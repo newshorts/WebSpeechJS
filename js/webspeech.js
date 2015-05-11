@@ -1,7 +1,7 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Do whatever you want with this
+ * 
+ * Mike Newell
  */
 
 
@@ -22,18 +22,12 @@ function WebSpeech($, options) {
         final = '',
         tmp = '';
 
-//    var analyzer, contextualizer;
-
     function init() {
         if (!('webkitSpeechRecognition' in window)) {
-//                            console.log('starting');
             $('.start').hide();
             // do no more
             return;
         }
-
-//        analyzer = new Analyzer(_CONTEXT);
-//        contextualizer = new Contextualizer();
 
         rec= new webkitSpeechRecognition();
         rec.continuous = true;
@@ -56,32 +50,14 @@ function WebSpeech($, options) {
     function handleResult(evt) {
         tmp = '';
         for(var i = evt.resultIndex; i < evt.results.length; i++) {
-
             var result = evt.results[i][0];
-                            console.log(result);
-
-            tmp += result.transcript;
-            __.options.onResult(tmp);
-
-//            if(evt.results[i].isFinal) {
-//                tmp += result.transcript;
-//                final += result.transcript;
-//                console.log('this is final')
-//                console.log(final)
-//                console.log('TODO: start over and clear the list')
-//                // TODO: need to clear out the keywords list after this so we can start over
-//                __.options.onResult(tmp);
-//            } else {
-//                tmp += result.transcript;
-////                var output = analyzer.analyze(tmp);
-//
-////                contextualizer.contextualize(output);
-//                __.options.onResult(tmp);
-//
-////                if(tmp.length > 0 && result.confidence > 0.88) {
-////                    // maybe we need to do something here???
-////                }    
-//            }
+            
+            if(evt.results[i].isFinal) {
+                // return the final output
+            } else {
+                tmp += result.transcript;
+                __.options.onResult(tmp);
+            }
 
             update();
         }
@@ -124,20 +100,14 @@ function WebSpeech($, options) {
     });
 
     // public
-    __.init = function() {
-        init();
-    };
-    
     __.start = function() {
         final = '';
         tmp = '';
         update();
         rec.start();
     };
-    
-//    __.onResult = function(output) {
-//        console.log(output);
-//    };
+
+    init();
 
     return __;
 }
