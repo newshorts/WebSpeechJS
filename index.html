@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Use for whatevs
+
+- Mike Newell
+-->
+<html>
+    <head>
+        <title>WebSpeechJS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="js/webspeech.js"></script>
+        <script>
+            (function() {
+                $(window).load(function() {
+                    var options = {
+                        startButton: $('.start'),
+                        stopButton: $('.stop'),
+                        tmpOutput: $('.tmp'),
+                        finalOutput: $('.final'),
+                        onResult: handleWebSpeechResult
+                    };
+                    var ws = new WebSpeech($, options);
+                    ws.init();
+                    
+                    function handleWebSpeechResult(result) {
+                        // do something with the text here
+                        console.log(result);
+                    }
+                });
+            })(jQuery);
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <p class="tmp"></p>
+            <p class="final"></p>
+            <button class="start">Start</button>
+        </div>
+    </body>
+</html>
